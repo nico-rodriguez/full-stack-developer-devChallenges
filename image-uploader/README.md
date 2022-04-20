@@ -6,7 +6,7 @@
 
 <div align="center">
   <h3>
-    <a href="https://{your-url-to-the-solution}">
+    <a href="https://image-uploader-48564.herokuapp.com/">
       Solution
     </a>
     <span> | </span>
@@ -17,6 +17,8 @@
 </div>
 
 ## Overview
+
+Visit [https://image-uploader-48564.herokuapp.com/](https://image-uploader-48564.herokuapp.com/).
 
 Uploading an image:
 
