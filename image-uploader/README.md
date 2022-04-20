@@ -31,15 +31,9 @@ The backend is secured with Helmet, `express-rate-limit` and `express-slow-down`
 
 This application/site was created as a submission to a [DevChallenges](https://devchallenges.io/challenges) challenge. The [challenge](https://devchallenges.io/challenges/O2iGT9yBd6xZBrOcVirx) was to build an application to complete the given user stories.
 
-## How To Use
+## Deploy
 
 ```bash
-# Clone this repository
-$ git clone https://github.com/your-user-name/your-project-name
-
-# Install dependencies
-$ npm install
-
-# Run the app
-$ npm start
+# Only push the changes in the `backend/` folder
+git subtree push --prefix image-uploader/backend heroku master
 ```
