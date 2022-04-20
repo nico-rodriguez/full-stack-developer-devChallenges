@@ -18,7 +18,13 @@
 
 ## Overview
 
-![]()
+Uploading an image:
+
+![success](./success.gif)
+
+Rate limiting:
+
+![too-many-requests](./too-many-requests.gif)
 
 ### Built With
 
