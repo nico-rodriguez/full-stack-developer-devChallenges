@@ -7,7 +7,8 @@ const Uploaded = ({ imageURL }) => {
     alert('Copied to clipboard!');
   };
 
-  const trimHostAndPort = (url) => url.split(':')[1].split('/')[1];
+  const trimHostAndPort = (url) =>
+    url.split(':')[2].split('/').slice(1).join('/');
 
   return (
     <div id='file-uploaded'>
