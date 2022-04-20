@@ -7,11 +7,13 @@ const Uploaded = ({ imageURL }) => {
     alert('Copied to clipboard!');
   };
 
+  const trimHostAndPort = (url) => url.split(':')[1].split('/')[1];
+
   return (
     <div id='file-uploaded'>
       <CheckIcon />
       <h1>Uploaded Successfully!</h1>
-      <img src={imageURL} alt='' />
+      <img src={trimHostAndPort(imageURL)} alt='' />
       <div className='image-url'>
         <div className='image-text-url'>{imageURL}</div>
         <button onClick={handleCopyLink}>Copy Link</button>
