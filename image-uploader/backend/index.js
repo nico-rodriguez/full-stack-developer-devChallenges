@@ -74,7 +74,7 @@ app.post(
   }
 );
 
-// app.set('trust proxy', 1);
+app.set('trust proxy', 1);
 app.get('/ip', limiter, (request, response) => response.send(request.ip));
 
 // **************** Error handler
