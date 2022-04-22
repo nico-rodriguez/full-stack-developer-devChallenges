@@ -41,7 +41,11 @@ This application/site was created as a submission to a [DevChallenges](https://d
 
 ## Deploy
 
+Since this is one project out of several others in the same repository, for pushing changes related to it run
+
 ```bash
 # Only push the changes in the `backend/` folder
 git subtree push --prefix image-uploader/backend heroku master
 ```
+
+For running a complete deployment process (frontend building and pushing to Heroku), go to the `backend/` directory and run `npm run deploy`.
