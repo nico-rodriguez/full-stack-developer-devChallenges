@@ -1,4 +1,4 @@
-import { Form } from './Form/Form';
+import { Form } from '../../components/Form/Form';
 import React from 'react';
 
 import logo from '../../assets/images/devchallenges.svg';

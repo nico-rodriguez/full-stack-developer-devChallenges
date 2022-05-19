@@ -1,15 +1,26 @@
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { Footer } from './components/Footer/Footer';
-import { Signup } from './components/Signup/Signup';
+import { Signup } from './pages/Signup/Signup';
 import './App.css';
 
 function App() {
   return (
-    <div className='app'>
-      <div className='wrapper'>
-        <Signup />
-        <Footer />
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Navigate to='/signup' />} />
+        <Route
+          path='/signup'
+          element={
+            <div className='app'>
+              <div className='wrapper'>
+                <Signup />
+                <Footer />
+              </div>
+            </div>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
