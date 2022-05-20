@@ -1,29 +1,29 @@
-import { Form } from '../../components/Form/Form';
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+import { Form } from '../../components/Form/Form';
 
 import logo from '../../assets/images/devchallenges.svg';
 
-import './Signup.css';
-
-export function Signup() {
+export default function Signup() {
   return (
-    <main className='signup'>
-      <h1 className='signup__header-1'>
+    <main className='main'>
+      <h1 className='main__header-1'>
         <img src={logo} alt='Authentication app logo' />
       </h1>
-      <h2 className='signup__header-2'>
+      <h2 className='main__header-2'>
         Join thousands of learners from around the world{' '}
       </h2>
-      <p className='signup__content'>
+      <p className='main__content'>
         Master web development by making real-life projects. There are multiple
         paths for you to choose
       </p>
-      <Form />
-      <div className='signup__footer'>
+      <Form buttonText='Start coding now' />
+      <div className='main__footer'>
         Already a member?{' '}
-        <a className='signup__link' href='#'>
+        <Link className='main__link' to='/login'>
           Login
-        </a>
+        </Link>
       </div>
     </main>
   );

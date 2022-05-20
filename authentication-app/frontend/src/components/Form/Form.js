@@ -7,9 +7,9 @@ import twitterLogo from './Twitter.svg';
 
 import './Form.css';
 
-export function Form() {
+export function Form({ buttonText }) {
   return (
-    <form className='login__form'>
+    <form className='form'>
       <input
         className='form__email-input'
         type='email'
@@ -21,7 +21,7 @@ export function Form() {
         placeholder='&#xe897; Password'
       />
       <button className='form__button' type='submit'>
-        Start coding now
+        {buttonText}
       </button>
       <div className='form__alternatives'>
         <div className='alternatives__header'>

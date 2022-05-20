@@ -1,3 +1,7 @@
+.form {
+  margin-top: 32px;
+}
+
 .form__email-input {
   margin-bottom: 14px;
 }

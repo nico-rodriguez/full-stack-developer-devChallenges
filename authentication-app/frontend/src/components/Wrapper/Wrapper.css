@@ -1,18 +1,37 @@
-.signup {
+.app {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper {
+  max-width: 425px;
+}
+
+@media only screen and (max-width: 425px) {
+  .wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.main {
   padding: 48px;
   border: 1px solid #bdbdbd;
   border-radius: 24px;
 }
 
 @media only screen and (max-width: 425px) {
-  .signup {
+  .main {
     border-color: transparent;
     border-radius: 24px;
     padding: 16px;
   }
 }
 
-.signup__header-2 {
+.main__header-2 {
   font-weight: 600;
   font-size: 1.8rem;
   line-height: 2.5rem;
@@ -21,16 +40,15 @@
   margin-top: 32px;
 }
 
-.signup__content {
+.main__content {
   font-size: 1.6rem;
   line-height: 2.2rem;
   letter-spacing: -0.035em;
   color: #333333;
   margin-top: 14px;
-  margin-bottom: 32px;
 }
 
-.signup__footer {
+.main__footer {
   font-size: 1.4rem;
   line-height: 1.9rem;
   text-align: center;
@@ -39,6 +57,6 @@
   margin-top: 27px;
 }
 
-.signup__link {
+.main__link {
   color: #2f80ed;
 }
