@@ -1,5 +1,5 @@
 {
-  "name": "authentication-app",
+  "name": "Authentication app (frontend)",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
