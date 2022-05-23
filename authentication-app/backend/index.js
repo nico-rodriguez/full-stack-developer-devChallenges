@@ -1,5 +1,6 @@
 const express = require('express');
 require('express-async-errors');
+const compression = require('compression');
 const session = require('express-session');
 const MemoryStore = require('memorystore')(session);
 const helmet = require('helmet');
@@ -56,22 +57,33 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 // Apply middleware
+if (process.env.NODE_ENV === 'production') {
+  const pino = require('pino-http')();
+  app.use(pino);
+}
 app.use(helmet());
 app.use(express.json());
 app.use(
   session({
+    name: 'sessionId',
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     // Expires after 24h.
     // connect-redis prunes its entries by default according to this number.
     // See `ttl` option of the `RedisStore`: https://www.npmjs.com/package/connect-redis.
-    cookie: { maxAge: 1000 * 60 * 60 * 24 },
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24,
+      httpOnly: true,
+      sameSite: 'strict',
+      secure: process.env.NODE_ENV === 'production',
+    },
     store: sessionStore,
   })
 );
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(compression());
 
 // Use routes
 app.use('/api/v1/signup', signupRouter);

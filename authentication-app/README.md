@@ -16,15 +16,37 @@
   </h3>
 </div>
 
+## Features
+
+This application/site was created as a submission to a [DevChallenges](https://devchallenges.io/challenges) challenge. The [challenge](https://devchallenges.io/challenges/N1fvBjQfhlkctmwj1tnw) was to build an application to complete the given user storie.
+
 ## Overview
 
 ![screenshot](https://user-images.githubusercontent.com/16707738/92399059-5716eb00-f132-11ea-8b14-bcacdc8ec97b.png)
 
-### Built With
+## Getting started
+
+After grabbing a local copy of the repository, you can start the backend server in development or production mode, by issuing either `npm run start:dev` or `npm run start` respectively, from inside `backend/` folder.
+
+The difference between development and production modes is that the session storage mechanism. In the first, the session is stored in a local Redis database; in the later, it's stored in-memory, through the `memorystore` package.
+
+In regard to the session, a secret must be provided in order to verify the authenticity of each user session (it's used to sign the session cookie).
+
+The user data is stored in a MongoDB.
+
+The application expects certain environment variables:
+
+```bash
+MONGODB_URL=<string>
+
+# Redis configuration only needed in development mode
+REDIS_HOST=<string>
+REDIS_PORT=<number>
+
+SESSION_SECRET=<string>
+```
+
+## Built With
 
 - [React](https://reactjs.org/)
 - [Express](http://expressjs.com/)
-
-## Features
-
-This application/site was created as a submission to a [DevChallenges](https://devchallenges.io/challenges) challenge. The [challenge](https://devchallenges.io/challenges/N1fvBjQfhlkctmwj1tnw) was to build an application to complete the given user storie.

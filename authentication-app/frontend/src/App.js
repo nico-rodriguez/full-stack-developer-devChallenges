@@ -2,6 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import Wrapper from './components/Wrapper/Wrapper';
 import Login from './pages/Login/Login';
+import Profile from './pages/Profile/Profile';
 import Signup from './pages/Signup/Signup';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
           <Route path='signup' element={<Signup />} />
           <Route path='login' element={<Login />} />
         </Route>
+        <Route path='/profile' element={<Profile />} />
       </Routes>
     </BrowserRouter>
   );

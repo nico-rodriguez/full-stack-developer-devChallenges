@@ -7,18 +7,29 @@ import twitterLogo from './Twitter.svg';
 
 import './Form.css';
 
-export function Form({ buttonText }) {
+export function Form({ buttonText, handleFormData }) {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const username = event.target.username.value;
+    const password = event.target.password.value;
+
+    await handleFormData(username, password);
+  };
+
   return (
-    <form className='form'>
+    <form className='form' onSubmit={handleSubmit}>
       <input
         className='form__email-input'
         type='email'
         placeholder='&#xe158; Email'
+        name='username'
       />
       <input
         className='form__password-input'
         type='password'
         placeholder='&#xe897; Password'
+        name='password'
       />
       <button className='form__button' type='submit'>
         {buttonText}

@@ -1,4 +1,5 @@
 function errorHandler(err, req, res, next) {
+  console.log(err);
   if (err.name === 'IncorrectPasswordError') {
     res.status(400);
     res.json({ error: 'Incorrect password.' });
