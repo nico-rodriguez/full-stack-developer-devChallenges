@@ -55,6 +55,7 @@ passport.serializeUser((user, done) => {
   done(null, user._id.toString());
 });
 
+// Get user data from it's id and attach it to req.user
 passport.deserializeUser(async (id, done) => {
   try {
     const user = await User.findById(id);
