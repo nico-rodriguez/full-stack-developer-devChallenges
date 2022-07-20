@@ -1,9 +1,9 @@
 import { Link, useNavigate } from 'react-router-dom';
 
-import { Form } from '../../components/Form/Form';
-import userService from '../../services/user';
+import { Form } from 'components/Form/Form';
+import userService from 'services/user';
 
-import logo from '../../assets/images/devchallenges.svg';
+import logo from 'assets/images/devchallenges.svg';
 
 export default function Login() {
   const navigate = useNavigate();

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { Form } from '../../components/Form/Form';
+import { Form } from 'components/Form/Form';
 
-import logo from '../../assets/images/devchallenges.svg';
-import userService from '../../services/user';
+import logo from 'assets/images/devchallenges.svg';
+import userService from 'services/user';
 
 export default function Signup() {
   const navigate = useNavigate();
