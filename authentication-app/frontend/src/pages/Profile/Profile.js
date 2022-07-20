@@ -1,6 +1,6 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import userService from 'services/user';
 
 import './Profile.css';
 
@@ -14,16 +14,15 @@ export default function Profile() {
   });
 
   useEffect(() => {
-    axios
-      .get('/api/v1/profile', {
-        withCredentials: true, // send request with cookies
-      })
-      .then(({ data }) => {
-        const { photo, name, bio, phone, email } = data;
-        setUser((user) => {
-          return Object.assign({ ...user }, { photo, name, bio, phone, email });
-        });
-      });
+    userService.getProfile().then(({ photo, name, bio, phone, email }) => {
+      setUser((user) => ({
+        photo: photo || user.photo,
+        name: name || user.name,
+        bio: bio || user.bio,
+        phone: phone || user.phone,
+        email: email || user.email,
+      }));
+    });
   }, []);
 
   return (
@@ -47,23 +46,23 @@ export default function Profile() {
         <section className='profile__content'>
           <div className='profile__item-container'>
             <div className='profile__item-label'>Photo</div>
-            <div className='profile__item-content'>{user.photo ?? ''}</div>
+            <div className='profile__item-content'>{user.photo}</div>
           </div>
           <div className='profile__item-container'>
             <div className='profile__item-label'>Name</div>
-            <div className='profile__item-content'>{user.name ?? '...'}</div>
+            <div className='profile__item-content'>{user.name}</div>
           </div>
           <div className='profile__item-container'>
             <div className='profile__item-label'>Bio</div>
-            <div className='profile__item-content'>{user.bio ?? '...'}</div>
+            <div className='profile__item-content'>{user.bio}</div>
           </div>
           <div className='profile__item-container'>
             <div className='profile__item-label'>Phone</div>
-            <div className='profile__item-content'>{user.phone ?? '...'}</div>
+            <div className='profile__item-content'>{user.phone}</div>
           </div>
           <div className='profile__item-container'>
             <div className='profile__item-label'>Email</div>
-            <div className='profile__item-content'>{user.email ?? '...'}</div>
+            <div className='profile__item-content'>{user.email}</div>
           </div>
           <div className='profile__item-container'>
             <div className='profile__item-label'>Password</div>
