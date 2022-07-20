@@ -3,7 +3,7 @@ const { Router } = require('express');
 const router = Router();
 
 router.get('/', (req, res) => {
-  req.logOut();
+  req.logout();
   res.redirect('/login');
 });
 

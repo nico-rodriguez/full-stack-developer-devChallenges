@@ -28,7 +28,7 @@ export function Form({ buttonText, handleFormData }) {
       <input
         className='form__password-input'
         type='password'
-        placeholder='&#xe897; Password'
+        placeholder='&#xe88d; Password'
         name='password'
       />
       <button className='form__button' type='submit'>
@@ -39,10 +39,18 @@ export function Form({ buttonText, handleFormData }) {
           or continue with these social profile
         </div>
         <div className='alternatives__items'>
-          <img src={googleLogo} alt='Google logo' />
-          <img src={facebookLogo} alt='Facebook logo' />
-          <img src={twitterLogo} alt='Twitter logo' />
-          <img src={githubLogo} alt='Github logo' />
+          <a href='#'>
+            <img src={googleLogo} alt='Google logo' />
+          </a>
+          <a href='#'>
+            <img src={facebookLogo} alt='Facebook logo' />
+          </a>
+          <a href='#'>
+            <img src={twitterLogo} alt='Twitter logo' />
+          </a>
+          <a href='http://localhost:5000/api/v1/auth/github'>
+            <img src={githubLogo} alt='Github logo' />
+          </a>
         </div>
       </div>
     </form>

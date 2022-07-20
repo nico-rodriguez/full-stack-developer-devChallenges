@@ -1,31 +1,34 @@
 const express = require('express');
 require('express-async-errors');
 const compression = require('compression');
+const cors = require('cors');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
-const passport = require('passport');
 require('dotenv').config();
 
 const signupRouter = require('./api/v1/signup.js');
 const loginRouter = require('./api/v1/login.js');
 const logoutRouter = require('./api/v1/logout.js');
-const User = require('./models/User.js');
+const githubOAuthRouter = require('./api/v1/github.js');
+const profileRouter = require('./api/v1/profile.js');
+
+const passport = require('./auth/passport.js');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-
-// Configure passport
-// Use mongoose local strategy
-passport.use(User.createStrategy());
-// use static serialize and deserialize of model for passport session support
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
 
 // Apply middleware
 if (process.env.NODE_ENV === 'production') {
   const pino = require('pino-http')();
   app.use(pino);
 }
+app.use(
+  cors({
+    origin: 'http://localhost:3000', // allow to server to accept request from different origin
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true, // allow session cookie from browser to pass through
+  })
+);
 app.use(helmet());
 app.use(express.json());
 app.use(require('./auth/session.js'));
@@ -34,9 +37,16 @@ app.use(passport.session());
 app.use(compression());
 
 // Use routes
-app.use('/api/v1/signup', signupRouter);
-app.use('/api/v1/login', loginRouter);
-app.use('/api/v1/logout', logoutRouter);
+const basePath = '/api/v1';
+
+app.use(`${basePath}/signup`, signupRouter);
+app.use(`${basePath}/login`, loginRouter);
+app.use(`${basePath}/logout`, logoutRouter);
+
+// OAuth routes
+app.use(`${basePath}/auth/github`, githubOAuthRouter);
+
+app.use(`${basePath}/profile`, profileRouter);
 
 // Connect to database
 mongoose

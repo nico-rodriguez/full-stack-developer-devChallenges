@@ -34,6 +34,8 @@ In regard to the session, a secret must be provided in order to verify the authe
 
 The user data is stored in a MongoDB.
 
+### Environment variables
+
 The application expects certain environment variables:
 
 ```bash
@@ -43,7 +45,13 @@ MONGODB_URL=<string>
 REDIS_HOST=<string>
 REDIS_PORT=<number>
 
+# Secret for signing the session cookie
 SESSION_SECRET=<string>
+
+# OAuth
+# GitHub
+GITHUB_CLIENT_ID=<string>
+GITHUB_CLIENT_SECRET=<string>
 ```
 
 ## Built With
