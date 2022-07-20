@@ -4,7 +4,7 @@ const compression = require('compression');
 const cors = require('cors');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
-require('dotenv').config();
+const config = require('./config');
 
 const signupRouter = require('./api/v1/signup.js');
 const loginRouter = require('./api/v1/login.js');
@@ -15,10 +15,9 @@ const profileRouter = require('./api/v1/profile.js');
 const passport = require('./auth/passport.js');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
 
 // Apply middleware
-if (process.env.NODE_ENV === 'production') {
+if (config.NODE_ENV === 'production') {
   const pino = require('pino-http')();
   app.use(pino);
 }
@@ -50,7 +49,7 @@ app.use(`${basePath}/profile`, profileRouter);
 
 // Connect to database
 mongoose
-  .connect(process.env.MONGODB_URL)
+  .connect(config.MONGODB_URL)
   .then(() => {
     console.log('Connected to users database!');
   })
@@ -61,4 +60,4 @@ mongoose
   });
 
 // Start server
-app.listen(PORT, () => console.log(`Listening on PORT ${PORT}!`));
+app.listen(config.PORT, () => console.log(`Listening on PORT ${config.PORT}!`));

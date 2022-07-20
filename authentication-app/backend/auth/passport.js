@@ -1,5 +1,6 @@
 const passport = require('passport');
 const GitHubStrategy = require('passport-github2').Strategy;
+const config = require('../config');
 
 const User = require('../models/User.js');
 
@@ -10,8 +11,8 @@ passport.use(User.createStrategy());
 passport.use(
   new GitHubStrategy(
     {
-      clientID: process.env.GITHUB_CLIENT_ID,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET,
+      clientID: config.GITHUB_CLIENT_ID,
+      clientSecret: config.GITHUB_CLIENT_SECRET,
       callbackURL: 'http://localhost:5000/api/v1/auth/github/callback',
     },
     async (accessToken, refreshToken, profile, done) => {
@@ -53,6 +54,7 @@ passport.use(
 passport.serializeUser((user, done) => {
   done(null, user._id.toString());
 });
+
 passport.deserializeUser(async (id, done) => {
   try {
     const user = await User.findById(id);
