@@ -46,7 +46,9 @@ export default function Profile() {
         <section className='profile__content'>
           <div className='profile__item-container'>
             <div className='profile__item-label'>Photo</div>
-            <div className='profile__item-content'>{user.photo}</div>
+            <div className='profile__item-content'>
+              <img src={user.photo} alt={user.name || ''} />
+            </div>
           </div>
           <div className='profile__item-container'>
             <div className='profile__item-label'>Name</div>

@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 
-import { Form } from 'components/Form/Form';
+import { Form } from 'components/Form';
 import userService from 'services/user';
 
 import logo from 'assets/images/devchallenges.svg';

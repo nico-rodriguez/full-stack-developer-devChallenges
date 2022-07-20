@@ -1,10 +1,10 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import ProfileWrapper from 'components/ProfileWrapper/ProfileWrapper';
+import ProfileWrapper from 'components/ProfileWrapper';
 
-import Wrapper from 'components/Wrapper/Wrapper';
-import Login from 'pages/Login/Login';
-import Profile from 'pages/Profile/Profile';
-import Signup from 'pages/Signup/Signup';
+import Wrapper from 'components/Wrapper';
+import Login from 'pages/Login';
+import Profile from 'pages/Profile';
+import Signup from 'pages/Signup';
 
 function App() {
   return (

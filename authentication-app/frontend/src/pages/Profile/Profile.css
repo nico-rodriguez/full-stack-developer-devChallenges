@@ -114,6 +114,8 @@
   line-height: 1.8rem;
   letter-spacing: -0.035em;
   color: #bdbdbd;
+  display: flex;
+  align-items: center;
 }
 
 .profile__item-content {
@@ -134,5 +136,17 @@
   .profile__item-content {
     font-size: 1.6rem;
     line-height: 2.2rem;
+    text-align: end;
+  }
+}
+
+.profile__item-content img {
+  width: 72px;
+  height: 72px;
+}
+
+@media only screen and (max-width: 425px) {
+  .profile__item-content img {
+    margin-left: auto;
   }
 }
