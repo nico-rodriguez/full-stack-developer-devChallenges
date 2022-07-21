@@ -38,6 +38,10 @@
   color: #828282;
 }
 
+.profile-edit-form__item textarea {
+  resize: none;
+}
+
 .profile-edit-form__item:not(:first-child) label {
   display: block;
   margin-bottom: 4px;

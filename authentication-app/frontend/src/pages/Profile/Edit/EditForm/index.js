@@ -11,7 +11,7 @@ const EditForm = () => {
         />
         <label htmlFor='image-input' id='image-input-label'>
           <img
-            src='https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'
+            src='https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=72&q=72'
             alt=''
             width={72}
             height={72}
