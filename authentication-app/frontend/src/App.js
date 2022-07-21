@@ -5,6 +5,7 @@ import Wrapper from 'components/Wrapper';
 import Login from 'pages/Login';
 import Profile from 'pages/Profile';
 import Signup from 'pages/Signup';
+import Edit from 'pages/Profile/Edit';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         </Route>
         <Route path='/profile' element={<ProfileWrapper />}>
           <Route path='' element={<Profile />} />
+          <Route path='edit' element={<Edit />} />
         </Route>
       </Routes>
     </BrowserRouter>
