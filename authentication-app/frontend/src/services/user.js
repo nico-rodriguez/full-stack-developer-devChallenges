@@ -13,6 +13,10 @@ const getProfile = async () => {
   return user;
 };
 
-const userService = { signup, login, getProfile };
+const logout = async () => {
+  await axios.get('logout');
+};
+
+const userService = { signup, login, getProfile, logout };
 
 export default userService;

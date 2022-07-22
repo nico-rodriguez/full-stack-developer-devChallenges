@@ -22,7 +22,10 @@ export default function Header() {
           <li>My Profile</li>
           <li>Group Chat</li>
           <li></li>
-          <li>Logout</li>
+          <li>
+            <a href='http://localhost:5000/api/v1/logout'>Logout</a>
+            {/* <a href='http://google.com'>Google</a> */}
+          </li>
         </ul>
       </div>
     </header>
