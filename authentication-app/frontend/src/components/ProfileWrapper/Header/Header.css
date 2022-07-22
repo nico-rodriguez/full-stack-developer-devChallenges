@@ -58,7 +58,7 @@
   padding: 12px;
 }
 
-.profile-header__user-info:focus .profile-header__dropdown {
+.profile-header__user-info:focus-within .profile-header__dropdown {
   display: block;
 }
 
