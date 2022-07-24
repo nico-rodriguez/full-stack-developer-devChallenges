@@ -60,3 +60,14 @@
 .main__link {
   color: #2f80ed;
 }
+
+@media (prefers-color-scheme: dark) {
+  .app {
+    background-color: #333333;
+  }
+
+  .main__header-2,
+  .main__content {
+    color: #e0e0e0;
+  }
+}

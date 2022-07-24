@@ -40,3 +40,13 @@
   letter-spacing: -0.035em;
   color: #828282;
 }
+
+@media (prefers-color-scheme: dark) {
+  .profile-edit__title {
+    color: #ffffff;
+  }
+
+  .profile-edit__description {
+    color: #e0e0e0;
+  }
+}

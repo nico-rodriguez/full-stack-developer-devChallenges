@@ -3,11 +3,15 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { Form } from 'components/Form';
 
-import logo from 'assets/images/devchallenges.svg';
+import logoLightTheme from 'assets/images/devchallenges.svg';
+import logoDarkTheme from 'assets/images/devchallenges-light.svg';
 import userService from 'services/user';
 
 export default function Signup() {
   const navigate = useNavigate();
+  const logo = matchMedia('(prefers-color-scheme: dark)').matches
+    ? logoDarkTheme
+    : logoLightTheme;
 
   const handleFormData = async (username, password) => {
     const successfulSignup = await userService.signup(username, password);

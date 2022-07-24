@@ -65,7 +65,8 @@
   width: min(40ch, 100%);
 }
 
-.profile-edit-form__item:not(:first-child) input::placeholder {
+.profile-edit-form__item:not(:first-child) input::placeholder,
+.profile-edit-form__item textarea::placeholder {
   color: #bdbdbd;
 }
 
@@ -78,4 +79,14 @@
   line-height: 2.2rem;
   letter-spacing: -0.035em;
   color: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  #photo-input-text {
+    color: #e0e0e0;
+  }
+
+  .profile-edit-form__item:not(:first-child) label {
+    color: #e0e0e0;
+  }
 }

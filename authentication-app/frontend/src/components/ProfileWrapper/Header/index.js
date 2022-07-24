@@ -1,5 +1,6 @@
 import './Header.css';
-import logo from 'assets/images/devchallenges.svg';
+import logoLightTheme from 'assets/images/devchallenges.svg';
+import logoDarkTheme from 'assets/images/devchallenges-light.svg';
 import { Link } from 'react-router-dom';
 import userService from 'services/user';
 import { useEffect, useState } from 'react';
@@ -7,6 +8,9 @@ import { useEffect, useState } from 'react';
 export default function Header() {
   const [userName, setUserName] = useState(() => userService.getUserName());
   const [userPhoto, setUserPhoto] = useState(() => userService.getUserPhoto());
+  const logo = matchMedia('(prefers-color-scheme: dark)').matches
+    ? logoDarkTheme
+    : logoLightTheme;
 
   useEffect(() => {
     userService.getProfile().then(({ name, photo }) => {

@@ -26,3 +26,9 @@
 .footer__link {
   text-decoration: underline;
 }
+
+@media (prefers-color-scheme: dark) {
+  .footer__item {
+    color: #e0e0e0;
+  }
+}
