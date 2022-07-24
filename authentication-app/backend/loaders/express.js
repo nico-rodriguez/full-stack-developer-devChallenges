@@ -30,6 +30,7 @@ module.exports = function (session) {
   );
   app.use(helmet());
   app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
   app.use(session);
   app.use(passport.initialize());
   app.use(passport.session());

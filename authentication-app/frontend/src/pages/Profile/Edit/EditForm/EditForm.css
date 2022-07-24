@@ -5,16 +5,16 @@
   margin-bottom: 32px;
 }
 
-.profile-edit-form__image-input {
+.profile-edit-form__photo-input {
   display: none;
 }
 
-#image-input-label {
+#photo-input-label {
   position: relative;
   display: inline-block;
 }
 
-#image-input-label::after {
+#photo-input-label::after {
   content: '\e412';
   font-family: 'Material Symbols Rounded';
   font-size: 2rem;
@@ -24,11 +24,11 @@
   left: calc(36px - 1rem);
 }
 
-#image-input-label img {
+#photo-input-label img {
   border-radius: 8px;
 }
 
-#image-input-text {
+#photo-input-text {
   display: inline-block;
   margin-left: 24px;
   font-weight: 500;

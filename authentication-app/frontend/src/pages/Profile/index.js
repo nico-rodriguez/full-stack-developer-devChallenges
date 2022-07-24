@@ -15,13 +15,18 @@ export default function Profile() {
 
   useEffect(() => {
     userService.getProfile().then(({ photo, name, bio, phone, email }) => {
-      setUser((user) => ({
-        photo: photo || user.photo,
-        name: name || user.name,
-        bio: bio || user.bio,
-        phone: phone || user.phone,
-        email: email || user.email,
-      }));
+      setUser((user) => {
+        userService.saveUserName(name);
+        userService.saveUserPhoto(photo);
+
+        return {
+          photo: photo || user.photo,
+          name: name || user.name,
+          bio: bio || user.bio,
+          phone: phone || user.phone,
+          email: email || user.email,
+        };
+      });
     });
   }, []);
 
