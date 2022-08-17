@@ -13,8 +13,8 @@ export default function Signup() {
     ? logoDarkTheme
     : logoLightTheme;
 
-  const handleFormData = async (username, password) => {
-    const successfulSignup = await userService.signup(username, password);
+  const handleFormData = async (email, password) => {
+    const successfulSignup = await userService.signup(email, password);
     if (successfulSignup) {
       navigate('/profile');
     }

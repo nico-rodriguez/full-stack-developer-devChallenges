@@ -12,8 +12,8 @@ export default function Login() {
     ? logoDarkTheme
     : logoLightTheme;
 
-  const handleFormData = async (username, password) => {
-    const successfulLogin = await userService.login(username, password);
+  const handleFormData = async (email, password) => {
+    const successfulLogin = await userService.login(email, password);
     if (successfulLogin) {
       navigate('/profile');
     }

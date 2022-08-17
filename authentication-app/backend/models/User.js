@@ -27,11 +27,6 @@ const UserSchema = new mongoose.Schema({
     required: false,
     default: '',
   },
-  email: {
-    type: String,
-    required: false,
-    default: '',
-  },
 });
 
 // Add a username, hash and salt fields.
@@ -42,6 +37,7 @@ UserSchema.plugin(passportLocalMongoose, {
   // Maximum amount of time an account can be locked
   maxInterval: 1000 * 60 * 5,
   usernameField: 'email',
+  usernameQueryFields: ['email'],
   usernameUnique: true,
   // Whether login attempts should be limited and login failures should be penalized
   limitAttempts: true,

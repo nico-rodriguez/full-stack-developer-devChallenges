@@ -1,11 +1,18 @@
 import axios from 'lib/axios';
+import { toast } from 'react-toastify';
 
-const signup = async (username, password) => {
-  await axios.post('signup', { username, password });
+const signup = async (email, password) => {
+  try {
+    await axios.post('signup', { email, password });
+    toast.success('Signup successful');
+  } catch (error) {}
 };
 
-const login = async (username, password) => {
-  await axios.post('login', { username, password });
+const login = async (email, password) => {
+  try {
+    await axios.post('login', { email, password });
+    toast.success('Login successful');
+  } catch (error) {}
 };
 
 const getProfile = async () => {
@@ -22,11 +29,15 @@ const editProfile = async ({ photo, name, bio, phone, email, password }) => {
   editData.append('email', email);
   editData.append('password', password);
 
-  return await axios.post('profile/edit', editData, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    },
-  });
+  try {
+    const newProfile = await axios.post('profile/edit', editData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    toast.success('Profile edited successfully');
+    return newProfile;
+  } catch (error) {}
 };
 
 const saveUserPhoto = (photoURL) => {

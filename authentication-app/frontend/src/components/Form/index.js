@@ -11,10 +11,10 @@ export function Form({ buttonText, handleFormData }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const username = event.target.username.value;
+    const email = event.target.email.value;
     const password = event.target.password.value;
 
-    await handleFormData(username, password);
+    await handleFormData(email, password);
   };
 
   return (
@@ -23,7 +23,7 @@ export function Form({ buttonText, handleFormData }) {
         className='form__email-input'
         type='email'
         placeholder='&#xe158; Email'
-        name='username'
+        name='email'
       />
       <input
         className='form__password-input'
