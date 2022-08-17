@@ -1,5 +1,4 @@
 require('dotenv').config();
-const path = require('path');
 const express = require('express');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
@@ -39,9 +38,7 @@ const storage = new CloudinaryStorage({
     folder: STORAGE_FOLDER_NAME,
     format: async (req, file) => 'jpg',
     public_id: (req, file) => {
-      const fileExtension = path.extname(file.originalname);
-      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-      const filename = uniqueSuffix + fileExtension;
+      const filename = Date.now() + '-' + Math.round(Math.random() * 1e9);
       // save the random filename for the next middleware
       req.filename = filename;
 
@@ -70,8 +67,6 @@ app.use(helmet());
 
 app.use(express.static('build/'));
 
-// app.use(express.static('uploads/'));
-
 // ******************** Routes
 app.post(
   '/images',
@@ -80,6 +75,7 @@ app.post(
   upload.single('image'),
   (req, res) => {
     const imageURL = cloudinary.url(`${STORAGE_FOLDER_NAME}/${req.filename}`);
+    console.log(imageURL);
     res.json({ path: imageURL });
   }
 );
