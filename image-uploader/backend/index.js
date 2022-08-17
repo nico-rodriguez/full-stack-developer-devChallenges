@@ -75,7 +75,6 @@ app.post(
   upload.single('image'),
   (req, res) => {
     const imageURL = cloudinary.url(`${STORAGE_FOLDER_NAME}/${req.filename}`);
-    console.log(imageURL);
     res.json({ path: imageURL });
   }
 );
