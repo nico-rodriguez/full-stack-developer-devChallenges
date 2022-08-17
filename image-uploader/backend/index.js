@@ -1,9 +1,12 @@
+require('dotenv').config();
 const path = require('path');
 const express = require('express');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const slowDown = require('express-slow-down');
 const multer = require('multer');
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const errorHandler = require('./middleware/errorHandler');
 require('dotenv').config();
 
@@ -29,18 +32,28 @@ const speedLimiter = slowDown({
   // etc.
 });
 
-const upload = multer({
-  storage: multer.diskStorage({
-    destination: 'uploads/images/',
-    filename: (req, file, cb) => {
+const STORAGE_FOLDER_NAME = 'image-uploader-storage';
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: STORAGE_FOLDER_NAME,
+    format: async (req, file) => 'jpg',
+    public_id: (req, file) => {
       const fileExtension = path.extname(file.originalname);
       const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-      cb(null, file.fieldname + '-' + uniqueSuffix + fileExtension);
+      const filename = uniqueSuffix + fileExtension;
+      // save the random filename for the next middleware
+      req.filename = filename;
+
+      return filename;
     },
-  }),
+  },
+});
+
+const upload = multer({
+  storage,
   limits: {
     fileSize: 4 * 2 ** 20, // 4MB
-    files: 1,
   },
   fileFilter: (req, file, cb) => {
     const allowedMimeTypes = ['image/gif', 'image/jpeg', 'image/png'];
@@ -57,7 +70,7 @@ app.use(helmet());
 
 app.use(express.static('build/'));
 
-app.use(express.static('uploads/'));
+// app.use(express.static('uploads/'));
 
 // ******************** Routes
 app.post(
@@ -66,11 +79,8 @@ app.post(
   limiter,
   upload.single('image'),
   (req, res) => {
-    // Trim the uploads/ part of the file path
-    const imagePath = `http://${req.hostname}:${PORT}/${
-      req.file.path.split('uploads/')[1]
-    }`;
-    res.json({ path: imagePath });
+    const imageURL = cloudinary.url(`${STORAGE_FOLDER_NAME}/${req.filename}`);
+    res.json({ path: imageURL });
   }
 );
 
