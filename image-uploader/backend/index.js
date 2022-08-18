@@ -68,7 +68,7 @@ app.use(
   helmet.contentSecurityPolicy({
     directives: {
       'img-src': [
-        'self',
+        "'self'",
         'https://res.cloudinary.com/dnjnlemli/image/upload/v1/image-uploader-storage/',
       ],
     },
