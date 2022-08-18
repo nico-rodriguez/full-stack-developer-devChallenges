@@ -64,6 +64,16 @@ const upload = multer({
 
 // ****************** Middleware application
 app.use(helmet());
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      'img-src': [
+        'self',
+        'https://res.cloudinary.com/dnjnlemli/image/upload/v1/image-uploader-storage/',
+      ],
+    },
+  })
+);
 
 app.use(express.static('build/'));
 
