@@ -11,7 +11,7 @@ const Uploaded = ({ imageURL }) => {
     <div id='file-uploaded'>
       <CheckIcon />
       <h1>Uploaded Successfully!</h1>
-      <img src={imageURL} alt='' crossOrigin />
+      <img src={imageURL} alt='' crossOrigin='anonymous' />
       <div className='image-url'>
         <div className='image-text-url'>{imageURL}</div>
         <button onClick={handleCopyLink}>Copy Link</button>
