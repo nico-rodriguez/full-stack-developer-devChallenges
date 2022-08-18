@@ -27,6 +27,7 @@
   color: white;
   background-color: #2f80ed;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 #file-uploaded .image-text-url {

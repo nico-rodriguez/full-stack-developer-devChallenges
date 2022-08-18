@@ -41,4 +41,5 @@ label[for='file-click-input'] {
   border-radius: 5px;
   color: white;
   padding: 2px 8px;
+  cursor: pointer;
 }
