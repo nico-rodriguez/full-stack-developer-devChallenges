@@ -74,11 +74,6 @@ app.use(
     },
   })
 );
-app.use(
-  helmet.crossOriginResourcePolicy({
-    policy: 'cross-origin',
-  })
-);
 
 app.use(express.static('build/'));
 
