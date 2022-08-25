@@ -1,0 +1,3 @@
+[submodule "image-uploader"]
+	path = image-uploader
+	url = git@github.com:nico-rodriguez/image-uploader.git
