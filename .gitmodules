@@ -1,3 +1,6 @@
 [submodule "image-uploader"]
 	path = image-uploader
 	url = git@github.com:nico-rodriguez/image-uploader.git
+[submodule "authentication-app"]
+	path = authentication-app
+	url = git@github.com:nico-rodriguez/authentication-app.git
