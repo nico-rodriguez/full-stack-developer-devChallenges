@@ -7,6 +7,11 @@ const UserSchema = new mongoose.Schema({
     required: false,
     default: '',
   },
+  googleId: {
+    type: String,
+    required: false,
+    default: '',
+  },
   photo: {
     type: String,
     required: false,

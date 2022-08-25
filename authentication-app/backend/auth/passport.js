@@ -1,5 +1,6 @@
 const passport = require('passport');
 const GitHubStrategy = require('passport-github2').Strategy;
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const config = require('../config');
 
 const User = require('../models/User.js');
@@ -38,6 +39,44 @@ passport.use(
             }),
           }).save();
 
+          return done(null, newUser);
+        } else {
+          return done(null, user);
+        }
+      } catch (error) {
+        return done(error);
+      }
+    }
+  )
+);
+
+// Google OAuth strategy
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: config.GOOGLE_CLIENT_ID,
+      clientSecret: config.GOOGLE_CLIENT_SECRET,
+      callbackURL: 'http://localhost:5000/api/v1/auth/google/callback',
+    },
+    async (accessToken, refreshToken, profile, done) => {
+      try {
+        const user = await User.findOne({ googleId: profile.id });
+
+        if (!user) {
+          const newUser = await new User({
+            googleId: profile.id,
+            // If the Google profile doesn't have the following properties,
+            // don't include them and instead use the model's defaults.
+            ...(profile.photos?.[0].value && {
+              photo: profile.photos?.[0].value,
+            }),
+            ...(profile.displayName && {
+              name: profile.displayName,
+            }),
+            ...(profile._json.email && {
+              email: profile._json.email,
+            }),
+          }).save();
           return done(null, newUser);
         } else {
           return done(null, user);

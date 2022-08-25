@@ -2,6 +2,7 @@ const { Router } = require('express');
 const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const { phone: validatePhone } = require('phone');
 const User = require('../../models/User.js');
 const isUserAuth = require('../../middleware/auth.js');
 const { filterFalsyProps } = require('../../utils/objects.js');
@@ -35,6 +36,17 @@ router.get('/', isUserAuth, function (req, res) {
 router.post('/edit', isUserAuth, upload, async function (req, res) {
   const { name, bio, phone, email, password } = req.body;
   const { user, file } = req;
+
+  const { isValid: isPhoneValid } = validatePhone(phone);
+  if (!isPhoneValid) {
+    res.statusCode = 400;
+    return res.json('Invalid phone number');
+  }
+
+  if ((!email && password) || (email && !password)) {
+    res.statusCode = 400;
+    return res.json('Email and password must be set together');
+  }
 
   password && (await user.setPassword(password));
 

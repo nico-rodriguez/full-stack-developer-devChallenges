@@ -1,9 +1,26 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import intlTelInput from 'intl-tel-input';
 import userService from 'services/user';
+import 'intl-tel-input/build/css/intlTelInput.css';
 import './EditForm.css';
+import { toast } from 'react-toastify';
 
 const EditForm = () => {
   const [userPhoto, setUserPhoto] = useState(() => userService.getUserPhoto());
+  const [showPassword, setShowPassword] = useState(false);
+
+  const phoneInputRef = useRef(null);
+
+  useEffect(() => {
+    const input = document.querySelector('#phone');
+    phoneInputRef.current = intlTelInput(input, {
+      preferredCountries: ['US', 'UY'],
+    });
+  }, []);
+
+  const toggleShowPassword = () => {
+    setShowPassword((showPassword) => !showPassword);
+  };
 
   const getInputValues = (objInputs) =>
     Object.entries(objInputs).reduce(
@@ -14,7 +31,8 @@ const EditForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const { name, bio, phone, email, password } = event.target;
+    const { name, bio, email, password } = event.target;
+    const phone = phoneInputRef.current.getNumber();
     const [photo] = event.target.photo.files;
 
     URL.revokeObjectURL(userPhoto);
@@ -29,6 +47,18 @@ const EditForm = () => {
         password,
       }),
     };
+
+    const isPhoneInvalid = !phoneInputRef.current.isValidNumber();
+    if (isPhoneInvalid) {
+      toast.error('Invalid phone number');
+      return;
+    }
+
+    if ((!email && password) || (email && !password)) {
+      toast.error('Email and password must be set together');
+      return;
+    }
+
     const user = await userService.editProfile(editFields);
     userService.saveUserPhoto(user.photo);
     userService.saveUserName(user.name);
@@ -92,11 +122,22 @@ const EditForm = () => {
       <div className='profile-edit-form__item'>
         <label htmlFor='password'>Password</label>
         <input
-          type='password'
+          type={showPassword ? 'type' : 'password'}
           placeholder='Enter your password...'
           name='password'
           id='password'
         />
+        <button
+          type='button'
+          className='profile-edit-form__show-password-button'
+          onClick={toggleShowPassword}
+        >
+          {showPassword ? (
+            <span className='material-icons'>visibility</span>
+          ) : (
+            <span className='material-icons'>password</span>
+          )}
+        </button>
       </div>
       <button className='profile-edit-form__submit-button' type='submit'>
         Save

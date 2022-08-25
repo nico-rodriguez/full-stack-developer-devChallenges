@@ -37,7 +37,7 @@ export function Form({ buttonText, handleFormData }) {
           or continue with these social profile
         </div>
         <div className='alternatives__items'>
-          <a href='#'>
+          <a href='http://localhost:5000/api/v1/auth/google'>
             <img src={googleLogo} alt='Google logo' />
           </a>
           <a href='http://localhost:5000/api/v1/auth/github'>

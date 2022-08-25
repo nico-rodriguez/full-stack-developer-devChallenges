@@ -54,6 +54,9 @@
 
 .profile-edit-form__item:not(:first-child) > *:nth-child(2) {
   margin-bottom: 24px;
+}
+
+.profile-edit-form__item:not(:first-child) > *:nth-child(2):not(.iti) {
   border: 1px solid #828282;
   border-radius: 12px;
   padding: 8px 12px;
@@ -65,9 +68,39 @@
   width: min(40ch, 100%);
 }
 
+.iti {
+  width: 100%;
+}
+
+.iti input {
+  width: min(40ch, 100%);
+  border: 1px solid #828282;
+  border-radius: 12px;
+  padding: 8px 12px;
+  font-weight: 500;
+  font-size: 1.3rem;
+  line-height: 1.8rem;
+  letter-spacing: -0.035em;
+  color: #4f4f4f;
+}
+
 .profile-edit-form__item:not(:first-child) input::placeholder,
 .profile-edit-form__item textarea::placeholder {
   color: #bdbdbd;
+}
+
+.profile-edit-form__show-password-button {
+  border-radius: 12px;
+  background: none;
+  margin-left: 5px;
+  color: #828282;
+  cursor: pointer;
+}
+
+@media (prefers-color-scheme: dark) {
+  .profile-edit-form__show-password-button {
+    color: #ffffff;
+  }
 }
 
 .profile-edit-form__submit-button {

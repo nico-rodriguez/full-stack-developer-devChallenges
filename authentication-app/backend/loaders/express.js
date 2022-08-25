@@ -10,6 +10,7 @@ module.exports = function (session) {
   const loginRouter = require('../api/v1/login.js');
   const logoutRouter = require('../api/v1/logout.js');
   const githubOAuthRouter = require('../api/v1/github.js');
+  const googleOAuthRouter = require('../api/v1/google.js');
   const profileRouter = require('../api/v1/profile.js');
 
   const passport = require('../auth/passport.js');
@@ -45,6 +46,7 @@ module.exports = function (session) {
 
   // OAuth routes
   app.use(`${basePath}/auth/github`, githubOAuthRouter);
+  app.use(`${basePath}/auth/google`, googleOAuthRouter);
 
   app.use(`${basePath}/profile`, profileRouter);
 
